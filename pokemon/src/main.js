@@ -7,9 +7,6 @@ import store from './store'
 
 loadFonts()
 
-const API = "https://pokeapi.co/api/v2/";
-
 createApp(App).use(store).use(router)
     .use(vuetify)
-    .use(API)
   .mount('#app')
