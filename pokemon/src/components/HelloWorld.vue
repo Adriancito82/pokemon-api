@@ -14,8 +14,11 @@
         <h1 class="display-2 font-weight-bold mb-3">
           Aplicación para consultar todos los pokemon 🐱‍🚀
         </h1>
+        <h2>
+            Puedes buscar tu Pokmon favorito por nombre o por su Número:
+        </h2>
         <input id="buscar" type="text" placeholder="Buscar Pokemon" v-model="namePokemon" @input="filter(namePokemon)">
-        <v-btn>Buscar</v-btn>
+        <!--<v-btn>Buscar</v-btn>-->
 
         <div class="section" v-if="processed">
             <CardPokemon v-for="(obj, i) in pokemons" :key="obj.id" v-bind:number="'#' + (i + 1)"
@@ -60,10 +63,10 @@ export default {
     },
     methods: {
         filter(name) {
-            let regexp = /[^a-zA-Z]/gim
+            let regexp = /[^a-zA-Z0-9]/gim
             this.namePokemon = name.replace(regexp, '')
 
-            if (name.length >= 3) {
+            if (name.length >= 1) {
                 fetch('https://pokeapi.co/api/v2/pokemon/' + name.toLowerCase())
                     .then(async response => {
                         const data = await response.json()
@@ -87,7 +90,7 @@ body {
     background-color: rgb(240, 240, 2);
 }
 input {
-    margin-left: 2em;
+    margin-bottom: 15px;
     background-color: white;
     border: solid black 2px;
 }
@@ -121,6 +124,7 @@ section{width: 100%;}
   column-gap: 10px;
   row-gap: 10px;
 }
+
 @media only screen and (max-width: 400px) {
   .section{
     grid-template-columns: 1fr;
