@@ -55,7 +55,7 @@ export default {
             fetch('https://pokeapi.co/api/v2/pokemon/' + i)
                 .then(async response => {
                     const data = await response.json()
-                this.pokemons.push(data)
+                    this.pokemons.push(data)
                 }).catch(() => {
                 console.error('Hay un error!!')
             })
@@ -66,12 +66,12 @@ export default {
             let regexp = /[^a-zA-Z0-9]/gim
             this.namePokemon = name.replace(regexp, '')
 
-            if (name.length >= 1) {
+            if (name.length >= 3) {
                 fetch('https://pokeapi.co/api/v2/pokemon/' + name.toLowerCase())
                     .then(async response => {
                         const data = await response.json()
                         this.pokemon = data
-                    this.processed = false
+                        this.processed = false
                     }).catch(err => {
                     console.log(err)
                 })
